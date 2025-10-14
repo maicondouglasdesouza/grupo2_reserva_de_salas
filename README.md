@@ -15,6 +15,7 @@ Funcionalidades:
   -  Alterar reserva  
   -  Cancelar reserva  
   - Consultar todas as reservas feitas
+  - mostrar usuário logado
 
 
 Interface:
