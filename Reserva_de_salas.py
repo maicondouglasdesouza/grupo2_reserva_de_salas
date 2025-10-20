@@ -20,15 +20,15 @@ HORARIOS = [
     "15:30 - 16:20", "16:20 - 17:00"
 ]
 
-#Dicionário para salvar reservas: { sala: {horario: professor} }
+# Dicionário para salvar reservas: { sala: {horario: professor} }
 reservas = {
     "Biblioteca": {},
     "Robótica": {},
     "Laboratório de Ciências": {}
 }
 
-#Tamanho padrão dos botões
-BOTAO_WIDTH = 200
+# Tamanho padrão dos botões
+BOTAO_WIDTH = 150
 
 
 class SistemaReservas(ctk.CTk):
@@ -44,7 +44,7 @@ class SistemaReservas(ctk.CTk):
         for widget in self.winfo_children():
             widget.destroy()
 
-    #Tela de Login
+    # Criar tela de login
     def tela_login(self):
         self.limpar()
         ctk.CTkLabel(self, text="Login do Professor",
@@ -72,7 +72,7 @@ class SistemaReservas(ctk.CTk):
         ctk.CTkButton(self, text="Entrar",
                       command=verificar_login, fg_color="green", width=BOTAO_WIDTH).pack(pady=10)
 
-    #Tela de Salas
+    # Tela das salas
     def tela_salas(self):
         self.limpar()
         ctk.CTkLabel(self, text=f"Professor: {self.professor}",
@@ -98,7 +98,7 @@ class SistemaReservas(ctk.CTk):
         ctk.CTkButton(self, text="Sair",
                       command=self.tela_login, fg_color="green", width=BOTAO_WIDTH).pack(pady=10)
 
-    #Tela consulta de horários
+    # Botão para tela de reservas
     def tela_consultar_reservas(self):
         self.limpar()
         ctk.CTkLabel(self, text=f"Reservas de {self.professor}",
@@ -122,7 +122,7 @@ class SistemaReservas(ctk.CTk):
         ctk.CTkButton(self, text="Voltar",
                       command=self.tela_salas, fg_color="green", width=BOTAO_WIDTH).pack(pady=20)
 
-    #Tela de horários
+    # Tela de horários
     def tela_horarios(self):
         self.limpar()
         ctk.CTkLabel(
@@ -203,7 +203,7 @@ class SistemaReservas(ctk.CTk):
                       command=self.tela_salas, width=BOTAO_WIDTH, fg_color="green").grid(row=0, column=2, padx=5)
 
 
-# manter a janela aberta e iniciar a aplicação
+# Iniciar aplicação e manter a janela aberta
 if __name__ == "__main__":
     app = SistemaReservas()
     app.mainloop()
