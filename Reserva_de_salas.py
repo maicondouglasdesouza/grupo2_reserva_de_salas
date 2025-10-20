@@ -20,12 +20,15 @@ HORARIOS = [
     "15:30 - 16:20", "16:20 - 17:00"
 ]
 
-# Dicionário para salvar reservas: { sala: {horario: professor} }
+#Dicionário para salvar reservas: { sala: {horario: professor} }
 reservas = {
     "Biblioteca": {},
     "Robótica": {},
     "Laboratório de Ciências": {}
 }
+
+#Tamanho padrão dos botões
+BOTAO_WIDTH = 200
 
 
 class SistemaReservas(ctk.CTk):
@@ -41,7 +44,7 @@ class SistemaReservas(ctk.CTk):
         for widget in self.winfo_children():
             widget.destroy()
 
-    # ----------- TELA LOGIN -----------
+    #Tela de Login
     def tela_login(self):
         self.limpar()
         ctk.CTkLabel(self, text="Login do Professor",
@@ -67,9 +70,9 @@ class SistemaReservas(ctk.CTk):
                               text_color="red")
 
         ctk.CTkButton(self, text="Entrar",
-                      command=verificar_login, fg_color="green").pack(pady=10)
+                      command=verificar_login, fg_color="green", width=BOTAO_WIDTH).pack(pady=10)
 
-    # ----------- TELA SALAS -----------
+    #Tela de Salas
     def tela_salas(self):
         self.limpar()
         ctk.CTkLabel(self, text=f"Professor: {self.professor}",
@@ -82,20 +85,20 @@ class SistemaReservas(ctk.CTk):
             self.tela_horarios()
 
         ctk.CTkButton(self, text="Biblioteca",
-                      command=lambda: selecionar_sala("Biblioteca"), fg_color="green").pack(pady=5, fill="x")
+                      command=lambda: selecionar_sala("Biblioteca"), fg_color="green", width=BOTAO_WIDTH).pack(pady=5)
         ctk.CTkButton(self, text="Robótica",
-                      command=lambda: selecionar_sala("Robótica"), fg_color="green").pack(pady=5, fill="x")
+                      command=lambda: selecionar_sala("Robótica"), fg_color="green", width=BOTAO_WIDTH).pack(pady=5)
         ctk.CTkButton(self, text="Laboratório de Ciências",
-                      command=lambda: selecionar_sala("Laboratório de Ciências"), fg_color="green").pack(pady=5, fill="x")
+                      command=lambda: selecionar_sala("Laboratório de Ciências"), fg_color="green", width=BOTAO_WIDTH).pack(pady=5)
 
         # Botão para consultar reservas
         ctk.CTkButton(self, text="Consultar Minhas Reservas",
-                      command=self.tela_consultar_reservas, fg_color="green").pack(pady=10)
+                      command=self.tela_consultar_reservas, fg_color="green", width=BOTAO_WIDTH).pack(pady=10)
 
         ctk.CTkButton(self, text="Sair",
-                      command=self.tela_login, fg_color="green").pack(pady=10)
+                      command=self.tela_login, fg_color="green", width=BOTAO_WIDTH).pack(pady=10)
 
-    # ----------- TELA CONSULTAR RESERVAS -----------
+    #Tela consulta de horários
     def tela_consultar_reservas(self):
         self.limpar()
         ctk.CTkLabel(self, text=f"Reservas de {self.professor}",
@@ -117,9 +120,9 @@ class SistemaReservas(ctk.CTk):
                          text_color="gray").pack(pady=10)
 
         ctk.CTkButton(self, text="Voltar",
-                      command=self.tela_salas, fg_color="green").pack(pady=20)
+                      command=self.tela_salas, fg_color="green", width=BOTAO_WIDTH).pack(pady=20)
 
-    # ----------- TELA HORÁRIOS -----------
+    #Tela de horários
     def tela_horarios(self):
         self.limpar()
         ctk.CTkLabel(
@@ -182,10 +185,10 @@ class SistemaReservas(ctk.CTk):
                 ocupado = reservas[self.sala_selecionada][h]
                 texto = f"{h}  - Ocupado por {ocupado}"
                 btn = ctk.CTkButton(frame, text=texto,
-                                    state="disabled", fg_color="gray")
+                                    state="disabled", fg_color="gray", width=BOTAO_WIDTH)
             else:
                 btn = ctk.CTkButton(
-                    frame, text=h, command=lambda h=h: reservar_horario(h), fg_color="green")
+                    frame, text=h, command=lambda h=h: reservar_horario(h), fg_color="green", width=BOTAO_WIDTH)
             btn.pack(pady=2, fill="x")
 
         # Botões de ação na parte inferior
@@ -193,14 +196,14 @@ class SistemaReservas(ctk.CTk):
         botoes_frame.pack(pady=15)
 
         ctk.CTkButton(botoes_frame, text="Cancelar Reserva",
-                      command=cancelar_reserva, width=120, fg_color="green").grid(row=0, column=0, padx=5)
+                      command=cancelar_reserva, width=BOTAO_WIDTH, fg_color="green").grid(row=0, column=0, padx=5)
         ctk.CTkButton(botoes_frame, text="Alterar Reserva",
-                      command=alterar_reserva, width=120, fg_color="green").grid(row=0, column=1, padx=5)
+                      command=alterar_reserva, width=BOTAO_WIDTH, fg_color="green").grid(row=0, column=1, padx=5)
         ctk.CTkButton(botoes_frame, text="Voltar",
-                      command=self.tela_salas, width=120, fg_color="green").grid(row=0, column=2, padx=5)
+                      command=self.tela_salas, width=BOTAO_WIDTH, fg_color="green").grid(row=0, column=2, padx=5)
 
 
-# ----------- Iniciar aplicação -----------
+# manter a janela aberta e iniciar a aplicação
 if __name__ == "__main__":
     app = SistemaReservas()
     app.mainloop()
