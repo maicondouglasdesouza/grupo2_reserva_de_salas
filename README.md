@@ -6,21 +6,22 @@ Um sistema simples de **reservas de salas escolares** desenvolvido em **Python**
 
 Funcionalidades:
 
-- Login de professores com usuário e senha.
-- Escolha entre 3 salas: **Biblioteca**, **Robótica** e **Laboratório de Ciências**.
-- Reservas de horários das **07:00 às 17:00**, com blocos de 50 minutos.
-- Cada professor pode reservar até **2 horários por sala**.
+- Login de professores com usuário e senha. (Variáveis fixas)
+- Escolha entre 3 salas: Biblioteca, Robótica e Laboratório de Ciências.
+- Reservas de horários das 07:00 às 17:00 com blocos de 50 minutos.
+- Cada professor pode reservar até 2 horários por sala.
 - Opções para:
   - Reservar horário  
   -  Alterar reserva  
   -  Cancelar reserva  
   - Consultar todas as reservas feitas
   - mostrar usuário logado
+  - botão voltar adicionado
 
 
 Interface:
 
-A interface foi criada com o tema **dark** e botões na cor **verde**, garantindo uma aparência moderna e uniforme.
+A interface foi criada com o tema dark e botões na cor verde, garantindo uma aparência moderna e uniforme.
 
 
  Tecnologias Utilizadas:
