@@ -21,7 +21,7 @@ Funcionalidades:
 
 Interface:
 
-A interface foi criada com o tema dark e botões na cor verde, garantindo uma aparência moderna e uniforme.
+A interface foi criada com o tema dark e botões na cor verde, garantindo uma aparência moderna e uniforme. E inserido o banco de dados sqlite3 fazendo o sistema agora armazenar as salas reservadas pelos usuários sem perda de dados ao fechar a aplicação.
 
 
  Tecnologias Utilizadas:
@@ -29,6 +29,7 @@ A interface foi criada com o tema dark e botões na cor verde, garantindo uma ap
 - Python 3.10+
 - CustomTkinter
 - Tkinter (nativo do Python)
+- SQLITE3
   
 
 
