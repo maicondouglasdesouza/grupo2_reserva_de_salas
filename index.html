@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Contratos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e86de;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        main {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2e86de;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-novo {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-novo:hover {
+            background-color: #219150;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2e86de;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .status-ativo {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-vencido {
+            color: red;
+            font-weight: bold;
+        }
+
+        .alertas {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffb300;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .alertas strong {
+            color: #b35a00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>📅 Controle de Contratos</h2>
+    </header>
+
+    <main>
+        {% if alertas %}
+        <div class="alertas">
+            <strong>⚠️ Atenção:</strong>
+            <ul>
+                {% for a in alertas %}
+                <li>Contrato de <b>{{ a.cliente }}</b> vence em <b>{{ a.dias_restantes }}</b> dia(s) ({{ a.data_vencimento }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <a href="/novo" class="btn-novo">+ Novo Contrato</a>
+
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Valor</th>
+                <th>Vencimento</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+            {% for c in contratos %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>R$ {{ "%.2f"|format(c[2]) }}</td>
+                <td>{{ c[3] }}</td>
+                <td>
+                    {% if c[4] == "Ativo" %}
+                        <span class="status-ativo">Ativo</span>
+                    {% else %}
+                        <span class="status-vencido">Vencido</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/editar/{{ c[0] }}">✏️ Editar</a> |
+                    <a href="/excluir/{{ c[0] }}" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️ Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

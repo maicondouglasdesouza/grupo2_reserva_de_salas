@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if contrato %}Editar Contrato{% else %}Novo Contrato{% endif %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            width: 60%;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e86de;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #2e86de;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #1e63a6;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #2e86de;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>{% if contrato %}Editar Contrato{% else %}Novo Contrato{% endif %}</h1>
+
+        <form method="POST">
+            <label>Cliente:</label>
+            <input type="text" name="cliente" value="{{ contrato[1] if contrato else '' }}" required>
+
+            <label>Valor (R$):</label>
+            <input type="number" step="0.01" name="valor" value="{{ contrato[2] if contrato else '' }}" required>
+
+            <label>Data de Vencimento:</label>
+            <input type="date" name="data_vencimento" value="{{ contrato[3] if contrato else '' }}" required>
+
+            <button type="submit">{% if contrato %}Salvar Alterações{% else %}Adicionar Contrato{% endif %}</button>
+        </form>
+
+        <a href="{{ url_for('index') }}">← Voltar</a>
+    </main>
+</body>
+</html>
